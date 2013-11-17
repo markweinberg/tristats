@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1.
+     Races
+  ul
+     each race in races
+       li
+          //a(href="mailto:#{race.name}")= race.name
+          a(href="/races/#{race.name}")= race.name
