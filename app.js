@@ -19,10 +19,12 @@ var mongoose = require('mongoose');
 //var server = new mongo.Server('localhost', 27017, {auto_reconnect: true});
 //var db = new mongo.Db('races', server);
 
-mongoose.connect('mongodb://localhost/races');
-var db = mongoose.connection;
+//mongoose.connect('mongodb://localhost/races');
+var xxDB = require('./db');
+//var db = mongoose.connection;
+var db = xxDB.RacesDB;
 
-db.on('error', console.error.bind(console, 'database connection error'));
+//db.on('error', console.error.bind(console, 'database connection error'));
 
 var app = express();
 
