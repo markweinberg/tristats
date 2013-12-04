@@ -1,6 +1,6 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*  padding: 50px; */
+/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
 }
 
 a {
@@ -21,6 +21,12 @@ a {
    margin: 0 auto;
    width: 1260px;
 }
+
+html, body {
+   margin: 0px;
+   padding: 0px;
+}
+
 
 .layoutHome .masthead {
 	height: 97px;
