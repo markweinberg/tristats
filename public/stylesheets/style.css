@@ -51,3 +51,12 @@ html, body {
 	width: 150px;
 	text-indent: -4000px;
 }
+
+.layoutHome #siteLogo {
+	background: url("/images/logo_235x80.png") no-repeat scroll 0 0 transparent;
+	float: left;
+	height: 80px;
+	margin: 7px 16px 0 65px;
+	width: 235px;
+	text-indent: -4000px;
+}
