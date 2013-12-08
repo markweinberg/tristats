@@ -10,6 +10,7 @@ var xxRaces = require('./routes/races');
 var xxRace = require('./routes/race');
 var http = require('http');
 var path = require('path');
+var xxAuth = require('./auth');
 
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
@@ -39,6 +40,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+app.use(xxAuth.Auth());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
