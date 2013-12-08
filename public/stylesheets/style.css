@@ -1,10 +1,26 @@
-body {
-/*  padding: 50px; */
-/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+
+/* For Debugging */
+
+div {
+   border: solid 1px red;
+}
+
+ul {
+   border: solid 1px yellow;
+}
+
+li {
+   border: solid 1px blue;
 }
 
 a {
-  color: #00B7FF;
+   border: solid 1px green;
+   text-decoration: none;
+   color: #FFF;
+}
+
+ul li {
+	list-style: none;
 }
 
 #homebg {
@@ -59,4 +75,51 @@ html, body {
 	margin: 7px 16px 0 65px;
 	width: 235px;
 	text-indent: -4000px;
+}
+
+.siteNav {
+	float: right;
+	height: 76px;
+}
+
+.layoutHome .siteNav {
+	float: right;
+	height: 90px;
+}
+
+.siteNav ul {
+	display: block;
+	height: 30px;
+}
+
+.siteNav ul li {
+	float: left;
+/*	margin: 26px 0 0 0; */
+	height: 62px;
+}
+
+.layoutHome .siteNav ul li {
+	float: left;
+	/* margin: 35px 0 0 0; */
+	height: 62px;
+}
+
+.siteNav ul li a {
+	color: #FFF;
+	display: block;
+	font-size: 18px;
+	font-family: 'Titillium-Thin', Arial, sans-serif;
+	line-height: 18px;
+	text-transform: uppercase;
+	padding: 10px 12px 0 14px;
+}
+
+.layoutHome .siteNav ul li a {
+	color: #FFF;
+	display: block;
+	font-size: 21px;
+	font-family: 'Titillium-Thin', Arial, sans-serif;
+	line-height: 21px;
+	text-transform: uppercase;
+	padding: 10px 12px 0 14px;
 }
