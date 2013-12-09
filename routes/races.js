@@ -17,7 +17,8 @@ exports.races = function(db) {
             location_state : String,
             location_country : String});
 
-      var races = xxMongoose.model('races', raceSchema);
+//      var races = xxMongoose.model('races', raceSchema);
+      var races = db.model('races', raceSchema);
 
         races.find(function(err, data) {
            res.render('races', {"races" : data});
