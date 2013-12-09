@@ -7,13 +7,13 @@ var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var xxRaces = require('./routes/races');
-var xxRace = require('./routes/race');
+//var xxRace = require('./routes/race');
 var http = require('http');
 var path = require('path');
 var xxAuth = require('./auth');
 
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
+//var mongo = require('mongodb');
+//var mongoose = require('mongoose');
 //var monk = require('monk');
 //var db = monk('localhost:27017/tristats');
 
@@ -21,9 +21,9 @@ var mongoose = require('mongoose');
 //var db = new mongo.Db('races', server);
 
 //mongoose.connect('mongodb://localhost/races');
-var xxDB = require('./db');
+//var xxDB = require('./db');
 //var db = mongoose.connection;
-var db = xxDB.RacesDB;
+//var db = xxDB.RacesDB;
 
 //db.on('error', console.error.bind(console, 'database connection error'));
 
@@ -51,8 +51,8 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/races', xxRaces.races(db));
-app.get('/races/:name', xxRace.race(db));
+app.get('/races', xxRaces.races()); //, xxRaces.races(db));
+//app.get('/races/:name', null); //xxRace.race(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

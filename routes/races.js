@@ -1,27 +1,14 @@
 
-var xxMongoose = require('mongoose');
+var xxRaceModel = require('../models/racemodel');
 
-/*
- * GET races list
- */
-
-exports.races = function(db) {
+exports.races = function() {
 
    // Route handlers always return a function(req, res)
 
    return function(req, res) {
 
-      var raceSchema = xxMongoose.Schema({
-            name : String,
-            location_city : String,
-            location_state : String,
-            location_country : String});
-
-//      var races = xxMongoose.model('races', raceSchema);
-      var races = db.model('races', raceSchema);
-
-        races.find(function(err, data) {
+      xxRaceModel.GetRaces(function(err, data) {
            res.render('races', {"races" : data});
-        });
+      });
    }
 }
