@@ -6,7 +6,7 @@ var xxRaces = require('./routes/races');
 var xxRace = require('./routes/race');
 var http = require('http');
 var path = require('path');
-var xxAuth = require('./auth');
+var xxLogin = require('./routes/login');
 
 //var mongo = require('mongodb');
 //var mongoose = require('mongoose');
@@ -36,7 +36,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
-app.use(xxAuth.Auth());
+app.use(xxLogin.IsLoggedIn());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -49,7 +49,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/races', xxRaces.races()); //, xxRaces.races(db));
 app.get('/races/:name', xxRace.race()); //xxRace.race(db));
-app.get('/login', xxAuth.Login());
+app.get('/login', xxLogin.Login());
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
