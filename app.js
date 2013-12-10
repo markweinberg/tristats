@@ -1,13 +1,9 @@
 
-/**
- * Module dependencies.
- */
-
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
 var xxRaces = require('./routes/races');
-//var xxRace = require('./routes/race');
+var xxRace = require('./routes/race');
 var http = require('http');
 var path = require('path');
 var xxAuth = require('./auth');
@@ -52,7 +48,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/races', xxRaces.races()); //, xxRaces.races(db));
-//app.get('/races/:name', null); //xxRace.race(db));
+app.get('/races/:name', xxRace.race()); //xxRace.race(db));
+app.get('/login', xxAuth.Login());
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

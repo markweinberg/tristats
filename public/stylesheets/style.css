@@ -1,6 +1,11 @@
 
 /* For Debugging */
 
+html, body {
+   margin: 0px;
+   padding: 0px;
+}
+
 div {
    border: solid 1px red;
 }
@@ -23,6 +28,43 @@ ul li {
 	list-style: none;
 }
 
+/* Login Page */
+
+#logindiv {
+   width: 30%;
+   height: 25%;
+   margin: 100px auto;
+}
+
+#loginUsernamePasswordDiv {
+   width: 50%; /* should be auto but doesn't seem to work */
+   text-align: right;
+   margin: auto;
+}
+
+.rightAlignedLabel {
+   padding: 0 5px 0 0;
+   text-align: left;
+   display: inline;
+}
+
+#loginUsername {
+   width: 100px;
+   display: inline-block;
+}
+
+#loginPassword {
+   width: 100px;
+   display: inline-block;
+}
+
+#loginButton {
+   width: 100px;
+   display: block;
+   padding: 50px 0 0 0;
+   margin: 0 auto;
+}
+
 #homebg {
    background: url("/images/imbg.jpg");
    position: absolute;
@@ -37,12 +79,6 @@ ul li {
    margin: 0 auto;
    width: 1260px;
 }
-
-html, body {
-   margin: 0px;
-   padding: 0px;
-}
-
 
 .layoutHome .masthead {
 	height: 97px;

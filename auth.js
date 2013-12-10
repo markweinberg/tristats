@@ -1,4 +1,12 @@
 
+exports.Login = function() {
+
+   return function(req, res) {
+
+      res.render('login');
+   }
+}
+
 exports.Auth = function() {
 
     console.log("xxAuth::LoginUser");
