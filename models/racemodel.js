@@ -25,6 +25,11 @@ raceDB.on('disconnected', function() {
 process.on('SIGINT', function() {
    raceDB.close(function() {
       console.log('raceDB closed thru app termination');
+
+      // NOTE NOTE NOTE: need a better way to handle shutdown
+      // Check to see if there is something in Express to hook shutdown
+      // Will need to fire a shutdown event to all routes which will then in turn shutdown their models
+
       process.exit(0);
    });
 });
