@@ -1,0 +1,25 @@
+extends layout
+
+block append script
+   script.
+      function InitFocus() { 
+         document.getElementById('loginUsername').focus();; 
+      }
+
+   block body
+   body(onload='InitFocus()')
+
+      block content
+      header
+         #headerdiv(style="height:30px; width:100%; background-color:#08298A;")
+      #logindiv
+         form
+            #loginUsernamePasswordDiv
+               p
+                  label(for='loginUsername' class='rightAlignedLabel') Username:
+                  input(id='loginUsername' type='text')
+               p
+                  label(for='loginPassword' class='rightAlignedLabel') Password:
+                  input(id='loginPassword' type='password')
+            p
+               input(id='loginButton' type='submit' action='/login?username=foo' value='Login')
