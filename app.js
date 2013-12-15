@@ -36,7 +36,14 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
-app.use(xxLogin.IsLoggedIn());
+app.use(express.bodyParser());
+
+// If you want to build a site (ala Sharefile) that restricts access to all URL's
+// then you would put the app.use call here rather than on each individual URL
+
+//app.use(xxLogin.IsLoggedIn());
+
+
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -45,11 +52,19 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// If you only want to restrict certain URL's to logged in users, rather than checking that 
+// above, i.e. app.use(xxLogin.IsLoggedIn()), you would add that "middleware" to the app.get
+// below. Example:
+//
+// app.get('/someURL', xxLogin.EnsureLoggedIn(), xxSomeURLRoute);
+
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/races', xxRaces.races()); //, xxRaces.races(db));
+app.get('/races', xxLogin.IsLoggedIn(), xxRaces.races()); //, xxRaces.races(db));
 app.get('/races/:name', xxRace.race()); //xxRace.race(db));
-app.get('/login', xxLogin.Login());
+
+app.get('/login', xxLogin.LoginPage());
+app.post('/login', xxLogin.LoginUser());
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

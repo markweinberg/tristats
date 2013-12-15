@@ -3,7 +3,31 @@ var xxUserModel = require('../models/usermodel');
 
 var _isLoggedIn = false;
 
-exports.Login = function() {
+exports.LoginUser = function() {
+
+   return function(req, res) {
+
+      if (req.body && req.body.user) {
+      
+         // Attempt to log the user in
+
+         // if successfully logged in
+
+         if (req.body.user.name == "mark") {
+            _isLoggedIn = true;
+            res.redirect('/');
+         }
+      }
+
+      if (!_isLoggedIn) {
+         // Stay on the login page but throw an error. Not sure yet how to do this???
+         res.redirect('back');
+      }
+   }
+}
+
+
+exports.LoginPage = function() {
 
    return function(req, res) {
 
@@ -72,7 +96,6 @@ exports.IsLoggedIn = function() {
        }
        else {
           res.redirect('/login');
-_isLoggedIn = true;
 //          res.end("Not Authorized");
        }
    }

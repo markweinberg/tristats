@@ -13,13 +13,13 @@ block append script
       header
          #headerdiv(style="height:30px; width:100%; background-color:#08298A;")
       #logindiv
-         form
+         form(method='post' action='/login')
             #loginUsernamePasswordDiv
                p
                   label(for='loginUsername' class='rightAlignedLabel') Username:
-                  input(id='loginUsername' type='text')
+                  input(id='loginUsername' type='text' name='user[name]')
                p
                   label(for='loginPassword' class='rightAlignedLabel') Password:
-                  input(id='loginPassword' type='password')
+                  input(id='loginPassword' type='password' name='user[password]')
             p
-               input(id='loginButton' type='submit' action='/login?username=foo' value='Login')
+               input(id='loginButton' type='submit' value='Login')
