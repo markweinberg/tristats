@@ -1,27 +1,57 @@
 
 var xxUserModel = require('../models/usermodel');
+var xxAssert = require('assert');
 
 var _isLoggedIn = false;
+var _noLogin = 0;
+var _invalidPassword = -1;
+var _invalidUsername = -2;
+
+
+function GetUserToken(username, password) {
+
+   // Try to find the username and password in the DB
+
+   if ((username == "mark") && (password == "mark")) {
+      return 1234;
+   }
+
+   // Can we validate the username?
+
+   if (username == "mark") {
+      return _invalidPassword;
+   }
+   else {
+      return _invalidUsername;
+   }
+}
+
 
 exports.LoginUser = function() {
 
    return function(req, res) {
 
-      if (req.body && req.body.user) {
-      
-         // Attempt to log the user in
+console.log('LoginUser, before assert');
 
-         // if successfully logged in
+      xxAssert.ok(req.body != null);
+      xxAssert.ok(req.body.user != null);
+console.log('LoginUser, after asserts');
 
-         if (req.body.user.name == "mark") {
-            _isLoggedIn = true;
-            res.redirect('/');
-         }
+      // See if this is a valid username and password. If so, get the token.
+
+      var userToken = GetUserToken(req.body.user.name, req.body.user.password);
+        
+      xxAssert.ok(userToken != _noLogin);
+
+      if (userToken == _invalidPassword) {
+         res.render('login', { 'invalidUsername' : false, 'invalidPassword' : true });
       }
-
-      if (!_isLoggedIn) {
-         // Stay on the login page but throw an error. Not sure yet how to do this???
-         res.redirect('back');
+      else if (userToken == _invalidUsername) {
+         res.render('login', { 'invalidUsername' : true, 'invalidPassword' : false });
+      }
+      else {
+         _isLoggedIn = true;
+         res.redirect('/');
       }
    }
 }
@@ -31,57 +61,13 @@ exports.LoginPage = function() {
 
    return function(req, res) {
 
-//      console.log(req.params.username);
-/*
-      if (req.params.count == 0) {
-         res.render('login');
-      }
-      else {
+      var userToken = _noLogin;
 
-         // Were the params passed via the login page or in the URL
-
-         if (req.params.fromURL) {
-             // Should we allow this?
-         }
-         else {
-            // These were params passed via the login page
-
-            // Validate the parameters (i.e. non null, no invalid characters, etc.
-
-            var user = xxUserModel.GetUser(req.params.username, req.params.password);
-
-            // Did we get a valid user
-
-            if (user.token > 0) {
-
-               _isLoggedIn = true;
-
-               // Go to the Home page
-
-               res.redirect('/');
-            }
-            else {
-
-               // Need to stay on the login page, but the user should be prompted
-               // with an "invalid login"
-               //
-               // How do we do this? Can you pass parameters in res.render? would you do /login/:invalid
-               // Then Jade could know that this was an invalid user
-               // 
-               // res.render('login', { isValidUser : false });
-               //
-               // Need to use Jade ~if login like
-               //
-               // ~if isInvalidUser
-               //     p Invalid User
-            }
-         }
+      if (req.params && req.params.token) {
+          userToken = req.params.token;
       }
 
-     
-      res.render('login');
-*/
-res.render('login', { isValidUser : true });
+      res.render('login', { 'token' : userToken });
    }
 }
 
