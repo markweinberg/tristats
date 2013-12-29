@@ -1,6 +1,7 @@
 
-var xxUserModel = require('../models/usermodel');
+//var xxUserModel = require('../models/usermodel');
 var xxAssert = require('assert');
+//var xxPassport = require('passport');
 
 var _isLoggedIn = false;
 var _noLogin = 0;
@@ -31,28 +32,7 @@ exports.LoginUser = function() {
 
    return function(req, res) {
 
-console.log('LoginUser, before assert');
-
-      xxAssert.ok(req.body != null);
-      xxAssert.ok(req.body.user != null);
-console.log('LoginUser, after asserts');
-
-      // See if this is a valid username and password. If so, get the token.
-
-      var userToken = GetUserToken(req.body.user.name, req.body.user.password);
-        
-      xxAssert.ok(userToken != _noLogin);
-
-      if (userToken == _invalidPassword) {
-         res.render('login', { 'invalidUsername' : false, 'invalidPassword' : true });
-      }
-      else if (userToken == _invalidUsername) {
-         res.render('login', { 'invalidUsername' : true, 'invalidPassword' : false });
-      }
-      else {
-         _isLoggedIn = true;
-         res.redirect('/');
-      }
+//      xxPassport.authenticate('local', { successRedirect : '/', failureRedirect : '/login' });
    }
 }
 

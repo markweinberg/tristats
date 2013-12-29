@@ -1,5 +1,6 @@
 
 var express = require('express');
+var passport = require('passport');
 var routes = require('./routes');
 var user = require('./routes/user');
 var xxRaces = require('./routes/races');
@@ -7,6 +8,7 @@ var xxRace = require('./routes/race');
 var http = require('http');
 var path = require('path');
 var xxLogin = require('./routes/login');
+var xxAuth = require('./auth');
 
 //var mongo = require('mongodb');
 //var mongoose = require('mongoose');
@@ -38,10 +40,20 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(express.bodyParser());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+xxAuth.ConfigureLocal();
+
+
 // If you want to build a site (ala Sharefile) that restricts access to all URL's
 // then you would put the app.use call here rather than on each individual URL
 
 //app.use(xxLogin.IsLoggedIn());
+
+// For passport, this would be:
+//
+// app.use(xxAuth.Authenticate(null));
 
 
 app.use(app.router);
@@ -56,15 +68,15 @@ if ('development' == app.get('env')) {
 // above, i.e. app.use(xxLogin.IsLoggedIn()), you would add that "middleware" to the app.get
 // below. Example:
 //
-// app.get('/someURL', xxLogin.EnsureLoggedIn(), xxSomeURLRoute);
+// app.get('/someURL', xxLogin.Authenticate(), xxSomeURLRoute);
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/races', xxLogin.IsLoggedIn(), xxRaces.races()); //, xxRaces.races(db));
+app.get('/races', xxAuth.Authenticate(), xxRaces.races()); //, xxRaces.races(db));
 app.get('/races/:name', xxRace.race()); //xxRace.race(db));
 
 app.get('/login', xxLogin.LoginPage());
-app.post('/login', xxLogin.LoginUser());
+app.post('/login', xxAuth.Authenticate('/'));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
