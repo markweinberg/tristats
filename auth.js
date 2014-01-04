@@ -1,4 +1,4 @@
-//var xxUser = require('./models/usermodel');
+var xxUser = require('./models/usermodel');
 var xxAssert = require('assert');
 var xxPassport = require('passport');
 var xxLocalStrategy = require('passport-local').Strategy;

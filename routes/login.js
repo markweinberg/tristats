@@ -47,7 +47,7 @@ exports.LoginPage = function() {
           userToken = req.params.token;
       }
 
-      res.render('login', { 'token' : userToken });
+      res.render('login', { 'title' : 'Login', 'token' : userToken });
    }
 }
 

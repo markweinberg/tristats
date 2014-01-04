@@ -25,12 +25,26 @@ var xxAuth = require('./auth');
 
 //db.on('error', console.error.bind(console, 'database connection error'));
 
+// Setup shutdown handlers
+
+process.on('SIGINT', function() {
+
+   var xxUserModel = require('./models/usermodel');
+   var xxRaceModel = require('./models/racemodel');
+
+   xxUserModel.Shutdown();
+   xxRaceModel.Shutdown();
+
+   process.exit(0);
+});
+
 var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());

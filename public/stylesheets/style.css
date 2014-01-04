@@ -31,13 +31,12 @@ ul li {
 /* Login Page */
 
 #logindiv {
-   width: 30%;
-   height: 25%;
-   margin: 100px auto;
+   text-align: center;
+   margin: auto;
 }
 
 #loginUsernamePasswordDiv {
-   width: 50%; /* should be auto but doesn't seem to work */
+   display: inline-block;
    text-align: right;
    margin: auto;
 }
