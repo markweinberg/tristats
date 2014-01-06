@@ -28,6 +28,14 @@ ul li {
 	list-style: none;
 }
 
+/* Header */
+
+#headerdiv {
+   height: 30px;
+   width: 100%;
+   background-color:#08298A;
+}
+
 /* Login Page */
 
 #logindiv {
@@ -62,6 +70,20 @@ ul li {
    display: block;
    padding: 50px 0 0 0;
    margin: 0 auto;
+}
+
+/* Account Page */
+
+.accountInput {
+   width: 200px;
+   display: inline-block;
+   text-align: left;
+}
+
+.accountLabel {
+   text-align: left;
+   display: inline-block;
+   width: 150px;
 }
 
 #homebg {

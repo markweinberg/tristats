@@ -66,13 +66,3 @@ exports.IsLoggedIn = function() {
        }
    }
 }
-
-/*
-Things to track down
- - Why doesn't script get called from the button click handler in login.jade?
- - How do you use Jade "if" statements? Want to add if isValidUser to that page
- - Should the token be part of the userModel schema? If so, does it need to be a field in the DB too?
- - How do I create a Shutdown event so that all DB's can be closed properly?
-*/
-
-

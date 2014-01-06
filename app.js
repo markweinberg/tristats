@@ -8,6 +8,7 @@ var xxRace = require('./routes/race');
 var http = require('http');
 var path = require('path');
 var xxLogin = require('./routes/login');
+var xxAccount = require('./routes/account');
 var xxAuth = require('./auth');
 
 //var mongo = require('mongodb');
@@ -91,6 +92,12 @@ app.get('/races/:name', xxRace.race()); //xxRace.race(db));
 
 app.get('/login', xxLogin.LoginPage());
 app.post('/login', xxAuth.Authenticate('/'));
+
+app.get('/account', xxAccount.AccountPage())
+
+// NOTE NOTE NOTE: need to handle Account Updates
+
+app.post('/account', xxAccount.CreateAccount())
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
