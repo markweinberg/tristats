@@ -1,0 +1,55 @@
+<html>
+<head>
+   <title><%= title %></title>
+   <link rel='stylesheet' href='/stylesheets/style.css'>
+   <script>
+      function InitFocus() {
+         document.getElementById('username').focus();
+      }
+   </script>
+</head>
+<body onload='InitFocus()'>
+   <header>
+      <div id='headerdiv'>
+         <form method='post' action='/login'>
+            <label for='loginUsernameX'> Username:</label>
+            <input id='loginUsernameX' type='text' name='username'></input>
+            <label for='loginPasswordX'> Password:</label>
+            <input id='loginPasswordX' type='password' name='password'></input>
+            <input id='loginButtonX' type='submit' value='Login'/>
+            <a href='/forgotpassword' style='margin: 0 40px'>Forgot Password?</a>
+            <a href='/account'>Create Account</a>
+         </form>
+      </div>
+   </header>
+   <div id='logindiv'>
+      <form method='post' action='/account'>
+         <div>
+            <p>
+               <label for='username' class='accountLabel'>Username:</label>
+               <input class='accountInput' id='username' type='text' name='username'></input>
+            </p>
+            <p>
+               <label for='password' class='accountLabel'>Password:</label>
+               <input class='accountInput' id='password' type='password' name='password'></input>
+            </p>
+            <p>
+               <label for='firstName' class='accountLabel'>First Name:</label>
+               <input class='accountInput' id='firstName' type='text' name='firstName'></input>
+            </p>
+            <p>
+               <label for='lastName' class='accountLabel'>Last Name:</label>
+               <input class='accountInput' id='lastName' type='text' name='lastName'></input>
+            </p>
+            <p>
+               <label for='email' class='accountLabel'>Email Address:</label>
+               <input class='accountInput' id='email' type='text' name='email'></input>
+            </p>
+         </div>
+         <p>
+            <input id='accountCreateUpdate' type='submit' value='Create Account'/>
+         </p>
+      </form>
+   </div>
+</body>
+</html>
