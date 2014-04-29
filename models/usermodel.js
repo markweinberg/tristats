@@ -7,7 +7,9 @@ var SALT_WORK_FACTOR = 10;
 var _userSchema = xxMongoose.Schema({
    sid : { type : Number }, 
    username : { type : String, required : true, index : { unique : true } },
-   password : { type : String, required : true },
+   password : { type : String }, //, required : true },
+   firstName : { type : String},
+   lastName : { type : String},
    email : { type : String }
 });
 
@@ -28,7 +30,7 @@ _userDB.on('disconnected', function() {
    console.log('userDB disconnected');
 });
 
-
+/*
 _userSchema.pre('save', function(next) {
 
    var user = this;
@@ -63,7 +65,7 @@ _userSchema.pre('save', function(next) {
       });
    });
 });
-
+*/
 
 _userSchema.methods.ComparePassword = function(candidatePassword, cb) {
 
