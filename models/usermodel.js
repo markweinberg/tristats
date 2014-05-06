@@ -7,7 +7,7 @@ var SALT_WORK_FACTOR = 10;
 var _userSchema = xxMongoose.Schema({
    sid : { type : Number }, 
    username : { type : String, required : true, index : { unique : true } },
-   password : { type : String }, //, required : true },
+   password : { type : String },
    firstName : { type : String},
    lastName : { type : String},
    email : { type : String }
@@ -80,7 +80,8 @@ _userSchema.methods.ComparePassword = function(candidatePassword, cb) {
 };
 
 
-exports.User = xxMongoose.model('users', _userSchema);
+//exports.User = xxMongoose.model('users', _userSchema);
+exports.User = _userDB.model('users', _userSchema);
 
 
 exports.Shutdown = function() {

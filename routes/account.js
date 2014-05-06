@@ -8,24 +8,26 @@ exports.CreateAccount = function() {
 
    return function(req, res) {
 
-      console.log("username = " + req.body.username);
-      console.log("first name = " + req.body.firstName);
-      console.log("last name = " + req.body.lastName);
-
       var user = new xxUserModel.User({
+         sid : 1000,
          username : req.body.username, 
+         password : req.body.password,
          firstName : req.body.firstName,
-         lastName : req.body.lastName
+         lastName : req.body.lastName,
+         email : req.body.email
       });
 
-      user.save(function(err, data) {
+console.log('before user.save');
+console.log('username = ' + user.username);
+
+      user.save(function(err) {
+
+console.log('after user.save');
 
          if (err) {
             return console.error(err);
          }
-         else {
-            console.dir(data);
-         }
+         console.log(user.username);
       });
 
       res.render('account', {'title' : 'Account'});
