@@ -8,25 +8,19 @@ exports.CreateAccount = function() {
 
    return function(req, res) {
 
-      var user = new xxUserModel.User({
-         sid : 1000,
-         username : req.body.username, 
-         password : req.body.password,
-         firstName : req.body.firstName,
-         lastName : req.body.lastName,
-         email : req.body.email
-      });
-
-console.log('before user.save');
-console.log('username = ' + user.username);
+      var user = new xxUserModel.User(
+         req.body.username, 
+         req.body.password, 
+         req.body.firstName, 
+         req.body.lastName, 
+         req.body.email);
 
       user.save(function(err) {
-
-console.log('after user.save');
 
          if (err) {
             return console.error(err);
          }
+
          console.log(user.username);
       });
 
