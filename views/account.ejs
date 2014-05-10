@@ -6,6 +6,37 @@
       function InitFocus() {
          document.getElementById('username').focus();
       }
+
+      function OnSubmit(event) {
+
+         // NOTE NOTE NOTE: the preventDefault and return false don't seem to actually 
+         // work. Would have to change the submit to a button and then manually submit
+         // the form.
+
+         // Validate the form
+
+         var usernameField = document.getElementById('username');
+         var usernameText = usernameField.value;
+
+         if (usernameText == "") {
+            alert("Please enter a valid username");
+            usernameField.focus();
+            event.preventDefault();
+            return false;
+         }
+
+         var passwordField = document.getElementById('password');
+         var passwordText = passwordField.value;
+
+         if (passwordText == "") {
+            alert("Please enter a valid password");
+            passwordField.focus();
+            event.preventDefault();
+            return false;
+         }
+
+         return true;
+      }
    </script>
 </head>
 <body onload='InitFocus()'>
@@ -23,7 +54,7 @@
       </div>
    </header>
    <div id='logindiv'>
-      <form method='post' action='/account'>
+      <form method='post' action='/account' onsubmit="return OnSubmit(this);">
          <div>
             <p>
                <label for='username' class='accountLabel'>Username:</label>

@@ -52,7 +52,7 @@ _userSchema.pre('save', function(next) {
 
    // Generate a salt
 
-   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+   xxBCrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
 
       if (err) {
          return next(err);
